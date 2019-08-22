@@ -43,7 +43,7 @@ Some simple games for children to play with their Gigapets.
 
 #### - What do the top 3 similar apps do for their users?
 
-###### Feed Twip
+#### Feed Twip
 
 - Teaches recommended serving sizes per meal for each category of food, feeding them to an animal
 
@@ -52,13 +52,13 @@ Some simple games for children to play with their Gigapets.
 
 ---
 
-###### Feed Them Right
+#### Feed Them Right
 
 - Swipe-and-cut style to roughly show servings for food categories. Very rough estimates, no numbers.
 
 **YouTube Preview:** http://bit.ly/2ZarWbZ
 
-###### HuePets
+#### HuePets
 
 - shows animation of pet starting in egg and hatching/growing as you feed it what you eat. Requires camera access to take picture of meal you are eating, but does not actually use the picture data to determine validity (just a fun activity to do). You then select item to feed pet (carrot, strawberry, mushroom, etc) to help it grow. No numbers, and no negative direction for health, meaning you can only select healthy options to give to the virtual pet.
   Some show children the cooking process and attempt to inspire them to be more involved in meal preparation, and show healthier alternatives to their less healthy foods and snacks.
@@ -88,7 +88,7 @@ Parents of younger children, ages 3-10
 
 Minimally validated by asking questions like “What motivates your kids?” and “How can a virtual pet help motivate your kids to eat more nutritious foods?” “If you had a game where your kid fed a pet the exact foods he/she eats, how would that benefit them?”
 
-    Responses have been positive, with a common phrase being (paraphrased) “Right now, anything new, fun, and interactive would help.  My kids need help eating healthy”
+Responses have been positive, with a common phrase being (paraphrased) “Right now, anything new, fun, and interactive would help. My kids need help eating healthy”
 
 #### Research (All members)
 
