@@ -12,14 +12,13 @@ const LoginPane = ({ errors, status }) => {
     status && errors.length === 0
       ? setLoggedState(true)
       : setLoggedState(false);
-    console.log(loggedState);
   }, [status, loggedState, errors]);
 
   return (
     <Form>
       <Field type="text" name="username" placeholder="Username" />
       <Field type="password" name="password" placeholder="Password" />
-      <Field component="button" type="submit" name="submitBtn">
+      <Field component="button" type="submit" name="loginSubmit">
         SUBMIT
       </Field>
       {errors && Object.keys(errors).length > 0 && (
@@ -35,7 +34,31 @@ const LoginPane = ({ errors, status }) => {
   );
 };
 
-const RegisterPane = ({ errors, status }) => {};
+const RegisterPane = ({ errors, status, setFieldValue }) => {
+  const [regState, setRegState] = useState();
+  const val = Math.floor(1000 + Math.random() * 9000);
+
+  useEffect(() => {
+    status && errors.length === 0 ? setRegState(true) : setRegState(false);
+  }, [regState, errors, status]);
+  return (
+    <Form>
+      <Field type="text" name="firstname" placeholder="First Name" />
+      <Field type="text" name="lastname" placeholder="Last Name" />
+      <Field type="text" name="username" placeholder="Username" />
+      <Field type="password" name="password" placeholder="Password" />
+      <Field type="hidden" name="pin" value />
+      <Field
+        component="button"
+        type="submit"
+        name="regSubmit"
+        onClick={() => setFieldValue("pin", val)}
+      >
+        SUBMIT
+      </Field>
+    </Form>
+  );
+};
 
 const FormikLogForm = withFormik({
   mapPropsToValues({ username, password }) {
@@ -44,6 +67,7 @@ const FormikLogForm = withFormik({
       password: password || ""
     };
   },
+  validateOnChange: false,
   validationSchema: Yup.object().shape({
     username: Yup.string().required(),
     password: Yup.string()
@@ -51,19 +75,46 @@ const FormikLogForm = withFormik({
       .required()
   }),
   handleSubmit(values, { resetForm, setErrors, setStatus }) {
-    values.email === "waffle@syrup.com"
-      ? setErrors({ email: "That email is already taken" })
-      : axios
-          .post("https://reqres.in/api/users", values)
-          .then(res => {
-            // console.log(res);
-            console.log(values);
-            setStatus(res.data);
-            resetForm();
-          })
-          .catch(err => console.log(err));
+    axios
+      .post("https://reqres.in/api/users", values)
+      .then(res => {
+        console.log(res);
+        resetForm();
+      })
+      .catch(err => console.log(err));
   }
 })(LoginPane);
+
+const FormikRegForm = withFormik({
+  mapPropsToValues({ firstname, lastname, username, password, pin }) {
+    return {
+      firstname: firstname || "",
+      lastname: lastname || "",
+      username: username || "",
+      password: password || "",
+      pin: pin || ""
+    };
+  },
+  validationSchema: Yup.object().shape({
+    firstname: Yup.string().required(),
+    lastname: Yup.string().required(),
+    username: Yup.string()
+      .min(8)
+      .required(),
+    password: Yup.string()
+      .min(8)
+      .required()
+  }),
+  handleSubmit(values, { resetForm, setErrors, setStatus }) {
+    axios
+      .post("https://reqres.in/api/users", values)
+      .then(res => {
+        console.log(res);
+        resetForm();
+      })
+      .catch(err => console.log(err));
+  }
+})(RegisterPane);
 
 const tabs = [
   {
@@ -74,7 +125,14 @@ const tabs = [
       </Tab.Pane>
     )
   },
-  { menuItem: "Register", render: () => <Tab.Pane>Register Content</Tab.Pane> }
+  {
+    menuItem: "Register",
+    render: () => (
+      <Tab.Pane>
+        <FormikRegForm />
+      </Tab.Pane>
+    )
+  }
 ];
 
 const LoginRegForm = () => <Tab panes={tabs} />;
