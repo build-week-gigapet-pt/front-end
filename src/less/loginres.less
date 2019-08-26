@@ -1,0 +1,59 @@
+.loginreg-form-container {
+  width: 500px !important;
+  height: 500px;
+  align-self: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+
+  .ui.segment[class*="bottom attached"]:last-child {
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-color: #f1f1f1;
+    outline: none;
+  }
+
+  .submitBtn {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    font-weight: bold;
+    background-color: @darkperi;
+    color: white;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: @periwinkle;
+      color: #333;
+    }
+  }
+
+  .errors {
+    width: 100%;
+    padding: 0 15px;
+    border: @error-border;
+    background-color: #ffdfdf;
+    color: @error-color;
+    font-weight: bold;
+    margin-top: 8px;
+    border-radius: 4px;
+
+    ul {
+      padding: 10px 25px;
+      list-style: square;
+      line-height: 1.6rem;
+    }
+  }
+}

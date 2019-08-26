@@ -18,7 +18,12 @@ const LoginPane = ({ errors, status }) => {
     <Form>
       <Field type="text" name="username" placeholder="Username" />
       <Field type="password" name="password" placeholder="Password" />
-      <Field component="button" type="submit" name="loginSubmit">
+      <Field
+        className="submitBtn"
+        component="button"
+        type="submit"
+        name="loginSubmit"
+      >
         SUBMIT
       </Field>
       {errors && Object.keys(errors).length > 0 && (
@@ -49,6 +54,7 @@ const RegisterPane = ({ errors, status, setFieldValue }) => {
       <Field type="password" name="password" placeholder="Password" />
       <Field type="hidden" name="pin" value />
       <Field
+        className="submitBtn"
         component="button"
         type="submit"
         name="regSubmit"
@@ -56,6 +62,15 @@ const RegisterPane = ({ errors, status, setFieldValue }) => {
       >
         SUBMIT
       </Field>
+      {errors && Object.keys(errors).length > 0 && (
+        <div className="errors">
+          <ul>
+            {Object.values(errors).map((error, i) => {
+              return <li key={i}>{error}</li>;
+            })}
+          </ul>
+        </div>
+      )}
     </Form>
   );
 };
