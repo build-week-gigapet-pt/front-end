@@ -130,11 +130,33 @@ table {
   display: flex;
   height: 100vh;
   background-color: #70e000;
+  align-items: center;
+}
+.App .main-container {
+  width: 100% !important;
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+}
+.App .main-container .ui.header {
+  width: 100%;
+  height: 75px;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30px;
+  background-color: #210037;
+  margin: 0;
+  position: static;
+  z-index: 10;
+}
+.App .main-container .ui.header .header-logo {
+  width: 175px !important;
 }
 .loginreg-form-container {
   width: 500px !important;
   height: 500px;
-  align-self: center;
+  margin: auto 0;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
@@ -183,4 +205,79 @@ table {
   padding: 10px 25px;
   list-style: square;
   line-height: 1.6rem;
+}
+.main-container {
+  width: 100% !important;
+  height: 100%;
+}
+.main-container .main-dashboard-inner {
+  width: 100% !important;
+  height: 100%;
+  display: flex !important;
+}
+.main-container .main-dashboard-inner .ui.header {
+  width: 100%;
+  height: 75px;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30px;
+  background-color: #210037;
+  margin: 0;
+  position: static;
+  z-index: 10;
+}
+.main-container .main-dashboard-inner .ui.header .header-logo {
+  width: 175px !important;
+}
+.main-container .main-dashboard-inner .ui.header .header-menu {
+  color: #eed4ff;
+  height: 75px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.main-container .main-dashboard-inner .ui.header .header-menu:hover {
+  color: #c268ff;
+  cursor: pointer;
+}
+.main-container .main-dashboard-inner .ui.header .header-menu .icon {
+  font-size: 30px;
+  margin-top: 10px;
+}
+.main-container .nav-menu {
+  width: 350px !important;
+  height: 100vh;
+  background: #210037;
+  border-left: 1px solid #eed4ff;
+  padding: 50px;
+  font-size: 1.4rem;
+  position: absolute;
+  right: -350px;
+  z-index: 11;
+  display: flex;
+}
+.main-container .nav-menu .close-container {
+  margin-bottom: 50px;
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid #eed4ff;
+}
+.main-container .nav-menu .close-container .close {
+  font-size: 2.5rem;
+  color: #eed4ff;
+  float: right;
+}
+.main-container .nav-menu .close-container .close:hover {
+  color: #c268ff;
+  cursor: pointer;
+}
+.main-container .nav-menu a {
+  color: #eed4ff;
+}
+.main-container .nav-menu a:hover {
+  color: #c268ff;
+}
+.main-container .nav-menu ul {
+  line-height: 4rem;
 }

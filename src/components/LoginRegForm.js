@@ -2,8 +2,9 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { Tab, Container } from "semantic-ui-react";
+import { Tab, Container, Header, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import logo from "../imgs/gigapet-logo.png";
 
 const LoginPane = ({ errors, props }) => {
   return (
@@ -119,7 +120,7 @@ const FormikRegForm = withFormik({
       .then(res => {
         if (res.status === 200) {
           localStorage.setItem("token", res.data.token);
-          props.props.props.history.push("/dashboard");
+          props.props.props.history.push("/profile");
         }
       })
       .catch(err => console.log(err));
@@ -147,8 +148,13 @@ const tabs = [
 
 const LoginRegForm = props => {
   return (
-    <Container className="loginreg-form-container">
-      <Tab panes={tabs} props={props} />;
+    <Container className="main-container">
+      <Header>
+        <Image className="header-logo" src={logo} alt="GigaPet Logo Small" />
+      </Header>
+      <Container className="loginreg-form-container">
+        <Tab panes={tabs} props={props} />;
+      </Container>
     </Container>
   );
 };

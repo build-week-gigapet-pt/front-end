@@ -1,8 +1,8 @@
 import React from "react";
 import "./css/App.css";
 import { Route } from "react-router-dom";
-// import GetCreds from "./components/GetCreds";
 import LoginRegForm from "./components/LoginRegForm";
+import DashBoard from "./components/DashBoard";
 import "semantic-ui-css/semantic.min.css";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
         path="/login"
         render={props => <LoginRegForm {...props} />}
       />
+      <Route path="/dashboard" render={props => <DashBoard {...props} />} />
     </div>
   );
 }
