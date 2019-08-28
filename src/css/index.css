@@ -224,8 +224,6 @@ table {
   padding-left: 30px;
   background-color: #210037;
   margin: 0;
-  position: static;
-  z-index: 10;
 }
 .main-container .main-dashboard-inner .ui.header .header-logo {
   width: 175px !important;
@@ -254,7 +252,6 @@ table {
   font-size: 1.4rem;
   position: absolute;
   right: -350px;
-  z-index: 11;
   display: flex;
 }
 .main-container .nav-menu .close-container {

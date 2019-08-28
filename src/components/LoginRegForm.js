@@ -75,9 +75,7 @@ const FormikLogForm = withFormik({
   validateOnBlur: false,
   validationSchema: Yup.object().shape({
     username: Yup.string().required(),
-    password: Yup.string()
-      .min(8)
-      .required()
+    password: Yup.string().required()
   }),
   handleSubmit(values, { props }) {
     axios
@@ -108,11 +106,9 @@ const FormikRegForm = withFormik({
     firstname: Yup.string().required(),
     lastname: Yup.string().required(),
     username: Yup.string()
-      .min(8)
-      .required(),
+    .required(),
     password: Yup.string()
-      .min(8)
-      .required()
+    .required()
   }),
   handleSubmit(values, { props }) {
     axios
