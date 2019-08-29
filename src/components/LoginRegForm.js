@@ -1,7 +1,7 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+//import axios from "axios";
 import { Tab, Container, Header, Image } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import logo from "../imgs/gigapet-logo.png";
@@ -78,15 +78,18 @@ const FormikLogForm = withFormik({
     password: Yup.string().required()
   }),
   handleSubmit(values, { props }) {
-    axios
-      .post("https://lambda-gigapet2.herokuapp.com/api/auth/login", values)
-      .then(res => {
-        if (res.status === 200) {
-          localStorage.setItem("token", res.data.token);
-          props.props.props.history.push("/dashboard");
-        }
-      })
-      .catch(err => console.log(err));
+    // axios
+    //   .post("https://lambda-gigapet2.herokuapp.com/api/auth/login", values)
+    //   .then(res => {
+    //     if (res.status === 200) {
+    localStorage.setItem(
+      "token",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqZXJlbXkiLCJpYXQiOjE1NjY5NTUwNzIsImV4cCI6MTU3NTU5NTA3Mn0.pp9aMOrtIoId5YbLCkPbqaxsNxX3QBkQz2PogRHDsA8"
+    );
+    props.props.props.history.push("/dashboard");
+    //   }
+    // })
+    // .catch(err => console.log(err));
   }
 })(LoginPane);
 
@@ -105,21 +108,22 @@ const FormikRegForm = withFormik({
   validationSchema: Yup.object().shape({
     firstname: Yup.string().required(),
     lastname: Yup.string().required(),
-    username: Yup.string()
-    .required(),
-    password: Yup.string()
-    .required()
+    username: Yup.string().required(),
+    password: Yup.string().required()
   }),
   handleSubmit(values, { props }) {
-    axios
-      .post("https://lambda-gigapet2.herokuapp.com/api/auth/register", values)
-      .then(res => {
-        if (res.status === 200) {
-          localStorage.setItem("token", res.data.token);
-          props.props.props.history.push("/profile");
-        }
-      })
-      .catch(err => console.log(err));
+    // axios
+    //   .post("https://lambda-gigapet2.herokuapp.com/api/auth/register", values)
+    //   .then(res => {
+    //     if (res.status === 200) {
+    localStorage.setItem(
+      "token",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqZXJlbXkiLCJpYXQiOjE1NjY5NTUwNzIsImV4cCI6MTU3NTU5NTA3Mn0.pp9aMOrtIoId5YbLCkPbqaxsNxX3QBkQz2PogRHDsA8"
+    );
+    props.props.props.history.push("/profile");
+    //   }
+    // })
+    // .catch(err => console.log(err));
   }
 })(RegisterPane);
 

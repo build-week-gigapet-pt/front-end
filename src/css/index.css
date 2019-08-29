@@ -214,6 +214,7 @@ table {
   width: 100% !important;
   height: 100%;
   display: flex !important;
+  flex-direction: column;
 }
 .main-container .main-dashboard-inner .ui.header {
   width: 100%;
@@ -224,6 +225,8 @@ table {
   padding-left: 30px;
   background-color: #210037;
   margin: 0;
+  position: relative;
+  z-index: 0;
 }
 .main-container .main-dashboard-inner .ui.header .header-logo {
   width: 175px !important;
@@ -243,19 +246,50 @@ table {
   font-size: 30px;
   margin-top: 10px;
 }
+.main-container .main-dashboard-inner .ui.container.parent-info {
+  width: 100%;
+  height: 50px;
+  background-color: #d1ffa3;
+  display: flex;
+  align-items: center;
+}
+.main-container .main-dashboard-inner .ui.container.parent-info p {
+  margin: 0 25px 0 0;
+}
+.main-container .main-dashboard-inner .ui.container.parent-info .dashboard-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #d1ffa3;
+  padding: 13.5px 30px;
+  background-color: #172e00;
+  margin: 0;
+}
+.main-container .main-dashboard-inner .ui.container.parent-info .welcome-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #3d7901;
+  padding: 13.5px 30px;
+  color: #f6ffa7;
+}
+.main-container .main-dashboard-inner .ui.container.parent-info .children-count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #172e00;
+}
 .main-container .nav-menu {
   width: 350px !important;
   height: 100vh;
-  background: #210037;
-  border-left: 1px solid #eed4ff;
+  background: #4c007e;
   padding: 50px;
   font-size: 1.4rem;
   position: absolute;
+  z-index: 1;
   right: -350px;
   display: flex;
+  transition-duration: 0.3s;
 }
 .main-container .nav-menu .close-container {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   height: 50px;
   width: 100%;
   border-bottom: 1px solid #eed4ff;
@@ -277,4 +311,7 @@ table {
 }
 .main-container .nav-menu ul {
   line-height: 4rem;
+}
+.main-container .menu-active {
+  right: 0;
 }
