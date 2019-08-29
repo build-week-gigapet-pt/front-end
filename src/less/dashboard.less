@@ -46,7 +46,7 @@
     .ui.container.parent-info {
       width: 100%;
       height: 50px;
-      background-color: @lightchartreuse;
+      background-color: @lightmauve;
       display: flex;
       align-items: center;
 
@@ -57,24 +57,41 @@
       .dashboard-title {
         font-size: 1.2rem;
         font-weight: bold;
-        color: @lightchartreuse;
-        padding: 13.5px 30px;
-        background-color: @darkchartreuse;
+        color: @lightmauve;
+        padding: 12.5px 30px;
+        background-color: @darkmauve;
         margin: 0;
+        box-sizing: border-box;
+        border-top: 2px solid @lightmauve;
       }
 
       .welcome-name {
         font-size: 1.2rem;
         font-weight: bold;
-        background-color: @mediumchartreuse;
-        padding: 13.5px 30px;
-        color: @lightyellow;
+        background-color: @mediummauve;
+        padding: 12.5px 30px;
+        color: @lightmauve;
+        box-sizing: border-box;
+        border-top: 2px solid @lightmauve;
       }
 
       .children-count {
         font-size: 1.2rem;
         font-weight: bold;
-        color: @darkchartreuse;
+        color: @darkmauve;
+        box-sizing: border-box;
+        border-top: 2px solid @lightmauve;
+      }
+    }
+
+    .childcard-container {
+      padding: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .ui.card {
+        margin: 0 0 30px;
       }
     }
   }

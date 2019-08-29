@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { axiosWithAuth } from "./axiosAuth";
 import { Container, Image, Header, Icon } from "semantic-ui-react";
 import logo from "../imgs/gigapet-logo.png";
+import ChildCard from "./ChildCard";
 
 const DashBoard = props => {
   const [active, setActive] = useState("");
@@ -50,6 +51,11 @@ const DashBoard = props => {
                 ? ` active children.`
                 : ` active child.`}
             </p>
+          </Container>
+          <Container className="childcard-container">
+            {parent.childArray.map((child, i) => {
+              return <ChildCard key={i} child={child} />;
+            })}
           </Container>
           <Container className={`nav-menu ${active}`}>
             <div className="close-container">
