@@ -129,8 +129,8 @@ table {
 .App {
   display: flex;
   height: 100vh;
-  background-color: #70e000;
   align-items: center;
+  background-color: #70e000;
 }
 .App .main-container {
   width: 100% !important;
@@ -329,4 +329,35 @@ table {
 }
 .main-container .menu-active {
   right: 0;
+}
+.ui.container.childcard-container {
+  display: flex;
+  flex-direction: column;
+}
+.ui.container.childcard-container .ui.card.childcard {
+  width: 100%;
+  background-color: #4c007e;
+  box-shadow: none;
+}
+.ui.container.childcard-container .ui.card.childcard .outer-content {
+  padding: 0 0 14px 0;
+}
+.ui.container.childcard-container .ui.card.childcard .header {
+  color: #f6ffa7;
+  background-color: #210037;
+  padding: 10px 24px;
+  border-radius: 4px;
+}
+.ui.container.childcard-container .ui.card.childcard .pet-info {
+  width: 20%;
+  padding-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.ui.container.childcard-container .ui.card.childcard .pet-info .meta {
+  color: #cceeff;
+}
+body,
+html {
+  background-color: #70e000;
 }
