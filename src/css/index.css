@@ -302,6 +302,7 @@ table {
   right: -350px;
   display: flex;
   transition-duration: 0.3s;
+  flex-direction: column;
 }
 .main-container .nav-menu .close-container {
   margin-bottom: 30px;
@@ -483,4 +484,21 @@ table {
 body,
 html {
   background-color: #70e000;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
+}
+body h3,
+html h3 {
+  font-size: 1.28571429rem;
+  line-height: 1.28571429em;
+  margin: calc(2rem - 0.14286em) 0 1rem;
+  font-weight: 700;
+}
+body p,
+html p {
+  line-height: 1.4285em;
+  font-size: 0.925em;
+}
+body strong,
+html strong {
+  font-weight: bold;
 }
