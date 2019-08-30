@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Icon, Image, Card } from "semantic-ui-react";
+import { Image, Card } from "semantic-ui-react";
 import { axiosWithAuth } from "./axiosAuth";
 import "semantic-ui-css/semantic.min.css";
+import ChildStats from "./ChildStats";
+import MealList from "./MealList";
+import MealEditor from "./MealEditor";
 
 const ChildCard = props => {
   const [childEntries, setChildEntries] = useState("");
@@ -17,14 +20,16 @@ const ChildCard = props => {
       .then(res => {
         setChildEntries(res.data);
       })
-      .then(childEntries && console.log(childEntries[0]))
       .catch(err => console.log(err));
-  }, []);
+  }, [props.child.child_id]);
 
   useEffect(() => {
     if (childEntries.length > 0) {
       const lastDate = new Date(
-        childEntries[childEntries.length - 1].date_added.split("T")[0]
+        Math.max.apply(
+          Math,
+          childEntries.map(entry => new Date(entry.date_update).getTime())
+        )
       );
       const currDate = new Date();
 
@@ -34,20 +39,20 @@ const ChildCard = props => {
   }, [childEntries]);
 
   useEffect(() => {
-    props && hoursSinceLastMeal >= 24
+    props && hoursSinceLastMeal >= 72
       ? setPetStatus("sick")
-      : hoursSinceLastMeal >= 12 && hoursSinceLastMeal <= 23
+      : hoursSinceLastMeal >= 24 && hoursSinceLastMeal <= 71
       ? setPetStatus("sad")
-      : hoursSinceLastMeal >= 6 && hoursSinceLastMeal <= 11
+      : hoursSinceLastMeal >= 12 && hoursSinceLastMeal <= 23
       ? setPetStatus("ok")
       : setPetStatus("happy");
-  }, [hoursSinceLastMeal]);
+  }, [hoursSinceLastMeal, props]);
 
   return (
-    petStatus && (
-      <Card className="childcard">
-        <Card.Content className="outer-content">
-          <Card.Header>{props.child.child_name}'s Stats</Card.Header>
+    <Card className="childcard">
+      <Card.Content className="outer-content">
+        <Card.Header>{props.child.child_name}</Card.Header>
+        <Card.Content className="inner-content">
           <Card.Content className="pet-info">
             <Image
               className="childcard-pet-image"
@@ -56,11 +61,22 @@ const ChildCard = props => {
             <Card.Meta>
               {props.child.pet_name}, XP: {props.child.pet_experience}
             </Card.Meta>
-            {console.log(props)}
           </Card.Content>
+          <ChildStats
+            lastMeal={lastMeal}
+            hoursSinceLastMeal={hoursSinceLastMeal}
+            petStatus={petStatus}
+          />
+          {lastMeal !== undefined && <MealList childEntries={childEntries} />}
+          {lastMeal !== undefined && (
+            <MealEditor
+              childname={props.child.child_name}
+              childEntries={childEntries}
+            />
+          )}
         </Card.Content>
-      </Card>
-    )
+      </Card.Content>
+    </Card>
   );
 };
 
