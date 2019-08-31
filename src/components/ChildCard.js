@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Card } from "semantic-ui-react";
+import { Image, Card, Button } from "semantic-ui-react";
 import { axiosWithAuth } from "./axiosAuth";
 import "semantic-ui-css/semantic.min.css";
 import ChildStats from "./ChildStats";
@@ -21,7 +21,7 @@ const ChildCard = props => {
         setChildEntries(res.data);
       })
       .catch(err => console.log(err));
-  }, [props.child.child_id]);
+  }, []);
 
   useEffect(() => {
     if (childEntries.length > 0) {
@@ -32,7 +32,7 @@ const ChildCard = props => {
         )
       );
       const currDate = new Date();
-
+      console.log(lastDate, currDate);
       setLastMeal(childEntries[childEntries.length - 1]);
       setHoursSinceLastMeal(Math.floor((currDate - lastDate) / (1000 * 3600)));
     }
@@ -46,7 +46,7 @@ const ChildCard = props => {
       : hoursSinceLastMeal >= 12 && hoursSinceLastMeal <= 23
       ? setPetStatus("ok")
       : setPetStatus("happy");
-  }, [hoursSinceLastMeal, props]);
+  }, [hoursSinceLastMeal]);
 
   return (
     <Card className="childcard">
@@ -60,7 +60,8 @@ const ChildCard = props => {
             ></Image>
             <Card.Meta>
               {props.child.pet_name}, XP: {props.child.pet_experience}
-            </Card.Meta>
+            </Card.Meta>{" "}
+            <Button>Add Meal +</Button>
           </Card.Content>
           <ChildStats
             lastMeal={lastMeal}

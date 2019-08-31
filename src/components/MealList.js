@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Card, Accordion, Icon } from "semantic-ui-react";
+import { Card, Accordion, Icon, Container } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import moment from "moment";
+import { axiosWithAuth } from "./axiosAuth";
 
 const MealList = ({ childEntries }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [entryCount, setEntryCount] = useState();
 
   const handleClick = (e, titleProps) => {
     const { index } = titleProps;
@@ -12,8 +15,16 @@ const MealList = ({ childEntries }) => {
     setActiveIndex(newIndex);
   };
 
-  useEffect(() => {}, [childEntries]);
-  console.log(childEntries);
+  const removeEntry = id => {
+    console.log("hello");
+    axiosWithAuth()
+      .delete(`https://lambda-gigapet2.herokuapp.com/api/entries/${id}`)
+      .then(res => {
+        console.log(res);
+        setEntryCount(childEntries.length);
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <Card.Content className="meal-list">
@@ -21,6 +32,13 @@ const MealList = ({ childEntries }) => {
       {childEntries &&
         childEntries.map((entry, i) => {
           const mealdate = entry.date_update.split("T")[0];
+          let dateparts = String(moment(mealdate)._d)
+            .split(" ")
+            .slice(0, 4);
+          dateparts = `${dateparts[0]}. ${dateparts[1]} ${dateparts[2]}, ${
+            dateparts[3]
+          }`;
+
           return (
             <Accordion key={i}>
               <Accordion.Title
@@ -29,7 +47,7 @@ const MealList = ({ childEntries }) => {
                 onClick={handleClick}
               >
                 <Icon name="dropdown" />
-                {entry.meal}, {mealdate}
+                {entry.meal}, {dateparts}
               </Accordion.Title>
               <Accordion.Content active={activeIndex === i}>
                 <ul>
@@ -51,6 +69,13 @@ const MealList = ({ childEntries }) => {
                     </span>{" "}
                     {entry.quantity}
                   </li>
+                  <Container
+                    className="remove-entry"
+                    onClick={() => removeEntry(entry.id)}
+                  >
+                    Remove&nbsp;
+                    <Icon name="trash alternate"></Icon>
+                  </Container>
                 </ul>
               </Accordion.Content>
             </Accordion>

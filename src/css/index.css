@@ -362,6 +362,13 @@ table {
 .ui.container.childcard-container .ui.card.childcard .inner-content .pet-info .meta {
   color: #cceeff;
 }
+.ui.container.childcard-container .ui.card.childcard .inner-content .pet-info button {
+  margin-top: 20px;
+  background-color: #00aaff;
+}
+.ui.container.childcard-container .ui.card.childcard .inner-content .pet-info button:hover {
+  background-color: #cceeff;
+}
 .ui.container.childcard-container .ui.card.childcard .inner-content .child-stats {
   color: #eed4ff;
   width: 25%;
@@ -387,14 +394,6 @@ table {
   align-items: center;
   flex-direction: column;
 }
-.ui.container.childcard-container .ui.card.childcard .inner-content .child-stats button {
-  margin-top: 10px;
-  background-color: #00aaff;
-  width: 250px;
-}
-.ui.container.childcard-container .ui.card.childcard .inner-content .child-stats button:hover {
-  background-color: #cceeff;
-}
 .meal-list {
   padding: 25px;
   background-color: #330055;
@@ -409,10 +408,29 @@ table {
   font-weight: bold;
   margin-top: 0 !important;
 }
+.meal-list .ui.accordion:not(.styled) .title ~ .content:not(.ui) {
+  background-color: #3d0065;
+  padding: 8px 8px 3px !important;
+  border: 1px solid #8000d4;
+}
 .meal-list ul li {
   list-style: square;
   margin-left: 30px;
   line-height: 1.5rem;
+}
+.meal-list .remove-entry {
+  color: #ffc3c3;
+  margin: 15px 0 5px;
+  width: 100%;
+  display: flex !important;
+  justify-content: flex-end;
+  background-color: #5d0000;
+  padding: 3px 0;
+  cursor: pointer;
+}
+.meal-list .remove-entry:hover {
+  color: #ffffff;
+  background-color: #900000;
 }
 .meal-editor {
   padding: 25px;
@@ -480,6 +498,14 @@ table {
   font-weight: bold;
   margin-top: 15px;
   border-radius: 4px;
+}
+select.styled-select {
+  height: 35px;
+  background-color: #9d0aff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  outline: none;
 }
 body,
 html {

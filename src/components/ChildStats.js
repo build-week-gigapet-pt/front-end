@@ -54,7 +54,6 @@ const ChildStats = ({ lastMeal, hoursSinceLastMeal, petStatus }) => {
       {lastMeal === undefined && (
         <Card.Description className="no-stats">
           <h2>No meal stats available...</h2>
-          <Button>Add Meal +</Button>
         </Card.Description>
       )}
     </Card.Content>
