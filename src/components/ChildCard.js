@@ -5,6 +5,7 @@ import "semantic-ui-css/semantic.min.css";
 import ChildStats from "./ChildStats";
 import MealList from "./MealList";
 import MealEditor from "./MealEditor";
+import FormikMealAdd from "./FormikMealAdd";
 
 const ChildCard = props => {
   const [childEntries, setChildEntries] = useState("");
@@ -32,8 +33,12 @@ const ChildCard = props => {
         )
       );
       const currDate = new Date();
-      console.log(lastDate, currDate);
-      setLastMeal(childEntries[childEntries.length - 1]);
+
+      childEntries.map(entry => {
+        if (new Date(entry.date_update).getTime() === lastDate.getTime())
+          setLastMeal(entry);
+      });
+
       setHoursSinceLastMeal(Math.floor((currDate - lastDate) / (1000 * 3600)));
     }
   }, [childEntries]);
@@ -63,6 +68,9 @@ const ChildCard = props => {
             </Card.Meta>{" "}
             <Button>Add Meal +</Button>
           </Card.Content>
+
+          <FormikMealAdd childID={props.child.child_id} />
+
           <ChildStats
             lastMeal={lastMeal}
             hoursSinceLastMeal={hoursSinceLastMeal}
@@ -73,6 +81,7 @@ const ChildCard = props => {
             <MealEditor
               childname={props.child.child_name}
               childEntries={childEntries}
+              setChildEntries={setChildEntries}
             />
           )}
         </Card.Content>

@@ -13,7 +13,7 @@ const DashBoard = props => {
     axiosWithAuth()
       .get("https://lambda-gigapet2.herokuapp.com/api/parent/1")
       .then(res => {
-        console.log(res.data);
+        //console.log(res.data);
         setParent(res.data);
       })
       .catch(err => console.log(err));

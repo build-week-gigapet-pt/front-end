@@ -68,11 +68,7 @@ const MealEditor = ({ childname, childEntries }) => {
           name="submitBtn"
           className="submit-edit"
           onClick={() => {
-            setFieldValue(
-              "date_update",
-              `${today.getFullYear()}-${today.getMonth() +
-                1}-${today.getDate()}`
-            );
+            setFieldValue("date_update", today);
             setFieldValue("id", currMeal);
             setFieldValue("datakey", childID);
           }}
@@ -137,7 +133,7 @@ const MealEditor = ({ childname, childEntries }) => {
               }
             )
             .then(res => {
-              setStatus(res);
+              setStatus(res.data);
               resetForm();
             })
             .catch(err => console.log(err));
