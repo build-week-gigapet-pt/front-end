@@ -15,11 +15,13 @@ const ChildCard = props => {
   const show = useState("none");
 
   useEffect(() => {
+    console.log(props.child.child_id);
     axiosWithAuth()
       .get(
         `https://lambda-gigapet2.herokuapp.com/api/child/${props.child.child_id}/entries`
       )
       .then(res => {
+        console.log(res);
         childEntries[1](res.data);
       })
       .catch(err => console.log(err));
@@ -42,7 +44,7 @@ const ChildCard = props => {
 
       setHoursSinceLastMeal(Math.floor((currDate - lastDate) / (1000 * 3600)));
     }
-  }, [childEntries]);
+  }, [childEntries[0]]);
 
   useEffect(() => {
     props && hoursSinceLastMeal >= 72

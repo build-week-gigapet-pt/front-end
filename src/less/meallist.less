@@ -8,37 +8,43 @@
     color: @lightmauve;
   }
 
-  .ui.accordion > div.title {
-    color: @lightchartreuse;
-    font-weight: bold;
-    margin-top: 0 !important;
-  }
+  .meal-list-inner {
+    max-height: 325px;
+    overflow-y: scroll;
+    padding-right: 20px;
 
-  .ui.accordion:not(.styled) .title ~ .content:not(.ui) {
-    background-color: darken(@mediummauve, 5%);
-    padding: 8px 8px 3px !important;
-    border: 1px solid darken(@lightmauve, 50%);
-  }
+    .ui.accordion > div.title {
+      color: @lightchartreuse;
+      font-weight: bold;
+      margin-top: 0 !important;
+    }
 
-  ul li {
-    list-style: square;
-    margin-left: 30px;
-    line-height: 1.5rem;
-  }
+    .ui.accordion:not(.styled) .title ~ .content:not(.ui) {
+      background-color: darken(@mediummauve, 5%);
+      padding: 8px 8px 3px !important;
+      border: 1px solid darken(@lightmauve, 50%);
+    }
 
-  .remove-entry {
-    color: lighten(@error-color, 20%);
-    margin: 15px 0 5px;
-    width: 100%;
-    display: flex !important;
-    justify-content: flex-end;
-    background-color: darken(@error-color, 50%);
-    padding: 3px 0;
-    cursor: pointer;
+    ul li {
+      list-style: square;
+      margin-left: 30px;
+      line-height: 1.5rem;
+    }
 
-    &:hover {
-      color: lighten(@error-color, 40%);
-      background-color: darken(@error-color, 40%);
+    .remove-entry {
+      color: lighten(@error-color, 20%);
+      margin: 15px 0 5px;
+      width: 100%;
+      display: flex !important;
+      justify-content: flex-end;
+      background-color: darken(@error-color, 50%);
+      padding: 3px 0;
+      cursor: pointer;
+
+      &:hover {
+        color: lighten(@error-color, 40%);
+        background-color: darken(@error-color, 40%);
+      }
     }
   }
 }

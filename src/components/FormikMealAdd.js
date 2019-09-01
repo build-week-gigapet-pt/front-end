@@ -5,61 +5,53 @@ import { withFormik, Form, Field } from "formik";
 import "semantic-ui-css/semantic.min.css";
 import * as Yup from "yup";
 
-const FormikMealAdd = ({ show, childEntries }) => {
+const FormikMealAdd = ({ show, childEntries, childID }) => {
   const MealForm = ({ errors, childID, setFieldValue }) => {
     const today = new Date();
     const handleClick = () => {
-      childEntries && setFieldValue("childID", childEntries[0][0].child_id);
+      setFieldValue("childID", childID);
       setFieldValue("date_added", today);
       setFieldValue("date_update", today);
     };
 
     return (
-      childEntries && (
-        <Card.Content
-          className="add-meal-container"
-          style={{ display: show[0] }}
-        >
-          <Icon name="close" onClick={() => show[1]("none")} />
-          <h3>Add A Meal</h3>
-          <Form>
-            <Field name="meal" component="select">
-              <option value>Select Meal...</option>
-              <option value="Breakfast">Breakfast</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Dinner">Dinner</option>
-              <option value="Snack">Snack</option>
-            </Field>
-            <Field type="text" name="name" placeholder="Food: Soup, Apple..." />
-            <Field type="text" name="quantity" placeholder="Qty.: 1, 2, 3..." />
-            <Field
-              type="text"
-              name="category"
-              placeholder="Category: Carbs..."
-            />
-            <Field type="hidden" name="childID" value />
-            <Field type="hidden" name="date_added" value />
-            <Field type="hidden" name="date_update" value />
+      <Card.Content className="add-meal-container" style={{ display: show[0] }}>
+        <Icon name="close" onClick={() => show[1]("none")} />
+        <h3>Add A Meal</h3>
+        <Form>
+          <Field name="meal" component="select">
+            <option value>Select Meal...</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Snack">Snack</option>
+          </Field>
+          <Field type="text" name="name" placeholder="Food: Soup, Apple..." />
+          <Field type="text" name="quantity" placeholder="Qty.: 1, 2, 3..." />
+          <Field type="text" name="category" placeholder="Category: Carbs..." />
+          <Field type="hidden" name="childID" value />
+          <Field type="hidden" name="date_added" value />
+          <Field type="hidden" name="date_update" value />
 
-            <Field
-              component="button"
-              type="submit"
-              onClick={() => handleClick()}
-            >
-              Add Meal +
-            </Field>
-            {errors && Object.keys(errors).length > 0 && (
-              <div className="errors">
-                <ul>
-                  {Object.values(errors).map((error, i) => {
-                    return <li key={i}>{error}</li>;
-                  })}
-                </ul>
-              </div>
-            )}
-          </Form>
-        </Card.Content>
-      )
+          <Field
+            component="button"
+            type="submit"
+            name="addMealBtn"
+            onClick={() => handleClick()}
+          >
+            Add Meal +
+          </Field>
+          {errors && Object.keys(errors).length > 0 && (
+            <div className="errors">
+              <ul>
+                {Object.values(errors).map((error, i) => {
+                  return <li key={i}>{error}</li>;
+                })}
+              </ul>
+            </div>
+          )}
+        </Form>
+      </Card.Content>
     );
   };
 
@@ -92,7 +84,6 @@ const FormikMealAdd = ({ show, childEntries }) => {
       category: Yup.string().required("Please enter category...")
     }),
     handleSubmit(values, { resetForm, setErrors, setStatus }) {
-      console.log(values.childID, "ChildID");
       axiosWithAuth()
         .post(
           `https://lambda-gigapet2.herokuapp.com/api/child/${values.childID}/entries`,
@@ -106,7 +97,6 @@ const FormikMealAdd = ({ show, childEntries }) => {
           }
         )
         .then(res => {
-          console.log(res);
           setStatus(res.data);
           axiosWithAuth()
             .get(

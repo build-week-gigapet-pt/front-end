@@ -36,9 +36,7 @@ const DashBoard = props => {
                 e.stopPropagation();
                 active === "" ? setActive("menu-active") : setActive("");
               }}
-            >
-              <Icon name="ellipsis vertical"></Icon>
-            </div>
+            ></div>
           </Header>
           <Container className="parent-info">
             <p className="dashboard-title">
@@ -51,24 +49,6 @@ const DashBoard = props => {
                 ? ` active children.`
                 : ` active child.`}
             </p>
-          </Container>
-          <Container className="childcard-container">
-            {parent.childArray.map((child, i) => {
-              return (
-                <ChildCard key={i} child={child} history={props.history} />
-              );
-            })}
-          </Container>
-          <Container className={`nav-menu ${active}`}>
-            <div className="close-container">
-              <Icon
-                className="close"
-                name="close"
-                onClick={() => {
-                  active === "" ? setActive("menu-active") : setActive("");
-                }}
-              ></Icon>
-            </div>
             <ul>
               <li>
                 {" "}
@@ -84,6 +64,13 @@ const DashBoard = props => {
                 </NavLink>
               </li>
             </ul>
+          </Container>
+          <Container className="childcard-container">
+            {parent.childArray.map((child, i) => {
+              return (
+                <ChildCard key={i} child={child} history={props.history} />
+              );
+            })}
           </Container>
         </Container>
       </Container>
