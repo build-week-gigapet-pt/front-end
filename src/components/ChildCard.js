@@ -15,13 +15,11 @@ const ChildCard = props => {
   const show = useState("none");
 
   useEffect(() => {
-    console.log(props.child.child_id);
     axiosWithAuth()
       .get(
         `https://lambda-gigapet2.herokuapp.com/api/child/${props.child.child_id}/entries`
       )
       .then(res => {
-        console.log(res);
         childEntries[1](res.data);
       })
       .catch(err => console.log(err));
