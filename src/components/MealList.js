@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, Accordion, Icon, Container } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import moment from "moment";

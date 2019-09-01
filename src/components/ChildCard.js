@@ -70,7 +70,11 @@ const ChildCard = props => {
             <Button onClick={() => show[1]("flex")}>Add Meal +</Button>
           </Card.Content>
 
-          <FormikMealAdd childID={props.child.child_id} show={show} />
+          <FormikMealAdd
+            childID={props.child.child_id}
+            show={show}
+            childEntries={childEntries}
+          />
 
           <ChildStats
             lastMeal={lastMeal}

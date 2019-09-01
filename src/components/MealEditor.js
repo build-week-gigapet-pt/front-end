@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Card } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Card, Icon } from "semantic-ui-react";
 import { withFormik, Form, Field } from "formik";
 import "semantic-ui-css/semantic.min.css";
 import * as Yup from "yup";
@@ -11,7 +11,6 @@ const MealEditor = ({ childname, childEntries }) => {
   const [currMeal, setCurrMeal] = useState();
   const [childID, setChildID] = useState();
   const [theDate, setTheDate] = useState();
-
   childEntries &&
     childEntries[0].forEach((entry, i) => {
       let dateparts = String(moment(entry.date_update)._d)
@@ -84,7 +83,7 @@ const MealEditor = ({ childname, childEntries }) => {
           }}
           disabled={isSubmitting}
         >
-          Submit
+          Edit Meal <Icon name="pencil" />
         </Field>
         {errors && Object.keys(errors).length > 0 && (
           <div className="errors">

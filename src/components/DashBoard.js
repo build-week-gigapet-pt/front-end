@@ -73,11 +73,15 @@ const DashBoard = props => {
               <li>
                 {" "}
                 <NavLink to="/profile">
-                  Profile <Icon name="user" />
+                  <Icon name="user" />
+                  &nbsp;Profile
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/">Logout</NavLink>
+                <NavLink to="/">
+                  <Icon name="sign-out" />
+                  &nbsp;Logout
+                </NavLink>
               </li>
             </ul>
           </Container>
