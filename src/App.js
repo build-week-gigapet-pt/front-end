@@ -8,11 +8,7 @@ import "semantic-ui-css/semantic.min.css";
 function App() {
   return (
     <div className="App">
-      <Route
-        exact
-        path="/login"
-        render={props => <LoginRegForm {...props} />}
-      />
+      <Route exact path="/" render={props => <LoginRegForm {...props} />} />
       <Route path="/dashboard" render={props => <DashBoard {...props} />} />
     </div>
   );
