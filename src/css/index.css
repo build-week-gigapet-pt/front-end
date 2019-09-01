@@ -425,6 +425,8 @@ table {
 }
 .ui.container.childcard-container .ui.card.childcard .inner-content .child-stats h2 {
   color: #ff5d5d;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 .ui.container.childcard-container .ui.card.childcard .inner-content .child-stats .description {
   line-height: 0.5rem;
