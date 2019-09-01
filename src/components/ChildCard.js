@@ -23,7 +23,7 @@ const ChildCard = props => {
         childEntries[1](res.data);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [props.child.child_id]);
 
   useEffect(() => {
     if (childEntries[0].length > 0) {
