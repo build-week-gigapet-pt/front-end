@@ -50,13 +50,13 @@ const DashBoard = props => {
                 : ` active child.`}
             </p>
             <ul>
-              <li>
+              {/* <li>
                 {" "}
                 <NavLink to="/profile">
                   <Icon name="user" />
                   &nbsp;Profile
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink to="/">
                   <Icon name="sign-out" />
