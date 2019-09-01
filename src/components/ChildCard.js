@@ -20,6 +20,7 @@ const ChildCard = props => {
         `https://lambda-gigapet2.herokuapp.com/api/child/${props.child.child_id}/entries`
       )
       .then(res => {
+        console.log("Child ID: " + props.child.child_id, "Entries", res.data);
         childEntries[1](res.data);
       })
       .catch(err => console.log(err));
