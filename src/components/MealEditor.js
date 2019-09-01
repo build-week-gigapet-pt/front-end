@@ -10,9 +10,10 @@ const MealEditor = ({ childname, childEntries }) => {
   const mealOptions = [];
   const [currMeal, setCurrMeal] = useState();
   const [childID, setChildID] = useState();
+  const [theDate, setTheDate] = useState();
 
   childEntries &&
-    childEntries.forEach((entry, i) => {
+    childEntries[0].forEach((entry, i) => {
       let dateparts = String(moment(entry.date_update)._d)
         .split(" ")
         .slice(0, 4);
@@ -22,17 +23,26 @@ const MealEditor = ({ childname, childEntries }) => {
       mealOptions.push({
         key: i,
         value: entry.id,
+        date: entry.date_update,
         text: `${entry.meal}, ${dateparts}`
       });
     });
 
   const handleChange = (e, value) => {
     setCurrMeal(value);
-    setChildID(childEntries[0].child_id);
+    setChildID(childEntries[0][0].child_id);
+    setTheDate(
+      e.target.options[e.target.selectedIndex].getAttribute("entrydate")
+    );
   };
 
-  const UpdateForm = ({ errors, currMeal, isSubmitting, setFieldValue }) => {
-    const today = new Date();
+  const UpdateForm = ({
+    errors,
+    currMeal,
+    theDate,
+    isSubmitting,
+    setFieldValue
+  }) => {
     return (
       <Form>
         <label htmlFor="name" className="form-name">
@@ -59,7 +69,7 @@ const MealEditor = ({ childname, childEntries }) => {
             placeholder="Carbs, Fruit, etc..."
           />
         </label>
-        <Field type="hidden" name="date_update" value />
+        <Field type="hidden" name="date_update" value={theDate} />
         <Field type="hidden" name="id" value={currMeal} />
         <Field type="hidden" name="datakey" value />
         <Field
@@ -68,7 +78,7 @@ const MealEditor = ({ childname, childEntries }) => {
           name="submitBtn"
           className="submit-edit"
           onClick={() => {
-            setFieldValue("date_update", today);
+            setFieldValue("date_update");
             setFieldValue("id", currMeal);
             setFieldValue("datakey", childID);
           }}
@@ -134,6 +144,11 @@ const MealEditor = ({ childname, childEntries }) => {
             )
             .then(res => {
               setStatus(res.data);
+              axiosWithAuth()
+                .get(
+                  `https://lambda-gigapet2.herokuapp.com/api/child/${values.datakey}/entries`
+                )
+                .then(res => childEntries[1](res.data));
               resetForm();
             })
             .catch(err => console.log(err));
@@ -147,7 +162,7 @@ const MealEditor = ({ childname, childEntries }) => {
         <h3>Edit {childname}'s Meals:</h3>
         <select
           className="styled-select"
-          onChange={(e, value, datakey) => handleChange(e, value, datakey)}
+          onChange={(e, value) => handleChange(e, value)}
         >
           <option key={0} value="">
             Select child's meal to edit...
@@ -158,6 +173,7 @@ const MealEditor = ({ childname, childEntries }) => {
                 key={option.key + 1}
                 value={option.value}
                 datakey={option.child_id}
+                entrydate={option.date}
               >
                 {option.text}
               </option>

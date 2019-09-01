@@ -54,7 +54,9 @@ const DashBoard = props => {
           </Container>
           <Container className="childcard-container">
             {parent.childArray.map((child, i) => {
-              return <ChildCard key={i} child={child} />;
+              return (
+                <ChildCard key={i} child={child} history={props.history} />
+              );
             })}
           </Container>
           <Container className={`nav-menu ${active}`}>

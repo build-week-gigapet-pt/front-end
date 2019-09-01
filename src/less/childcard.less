@@ -27,6 +27,10 @@
         text-align: center;
         font-weight: bold;
         background-color: @mediummauve;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         .meta {
           color: @periwinkle;
@@ -34,6 +38,7 @@
         button {
           margin-top: 20px;
           background-color: @darkperi;
+          width: 135px;
 
           &:hover {
             background-color: @periwinkle;
@@ -50,7 +55,6 @@
         position: absolute;
         left: 0;
         z-index: 1;
-        display: flex;
         flex-direction: column;
         padding: 25px;
         justify-content: center;
@@ -85,6 +89,17 @@
           color: white;
           font-weight: bold;
           outline: none;
+        }
+
+        .close {
+          font-size: 1.3rem;
+          justify-self: flex-start !important;
+          align-self: flex-end;
+          cursor: pointer;
+
+          &:hover {
+            color: white;
+          }
         }
       }
 

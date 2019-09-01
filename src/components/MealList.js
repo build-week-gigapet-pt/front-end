@@ -6,7 +6,6 @@ import { axiosWithAuth } from "./axiosAuth";
 
 const MealList = ({ childEntries }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [entryCount, setEntryCount] = useState();
 
   const handleClick = (e, titleProps) => {
     const { index } = titleProps;
@@ -20,8 +19,11 @@ const MealList = ({ childEntries }) => {
     axiosWithAuth()
       .delete(`https://lambda-gigapet2.herokuapp.com/api/entries/${id}`)
       .then(res => {
-        console.log(res);
-        setEntryCount(childEntries.length);
+        axiosWithAuth()
+          .get(
+            `https://lambda-gigapet2.herokuapp.com/api/child/${childEntries[0][0].child_id}/entries`
+          )
+          .then(res => childEntries[1](res.data));
       })
       .catch(err => console.log(err));
   };
@@ -30,7 +32,7 @@ const MealList = ({ childEntries }) => {
     <Card.Content className="meal-list">
       <h3>All Meals:</h3>
       {childEntries &&
-        childEntries.map((entry, i) => {
+        childEntries[0].map((entry, i) => {
           const mealdate = entry.date_update.split("T")[0];
           let dateparts = String(moment(mealdate)._d)
             .split(" ")

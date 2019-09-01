@@ -1,14 +1,15 @@
 import React from "react";
 import { axiosWithAuth } from "./axiosAuth";
-import { Card } from "semantic-ui-react";
+import { Card, Icon } from "semantic-ui-react";
 import { withFormik, Form, Field } from "formik";
 import "semantic-ui-css/semantic.min.css";
 import * as Yup from "yup";
 
-const FormikMealAdd = ({ childID }) => {
+const FormikMealAdd = ({ childID, show }) => {
   const MealForm = ({ errors, childID, isSubmitting, setFieldValue }) => {
     return (
-      <Card.Content className="add-meal-container">
+      <Card.Content className="add-meal-container" style={{ display: show[0] }}>
+        <Icon name="close" onClick={() => show[1]("none")} />
         <h3>Add A Meal</h3>
         <Form>
           <Field name="mealtype" component="select">

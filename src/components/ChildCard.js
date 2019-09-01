@@ -8,10 +8,11 @@ import MealEditor from "./MealEditor";
 import FormikMealAdd from "./FormikMealAdd";
 
 const ChildCard = props => {
-  const [childEntries, setChildEntries] = useState("");
+  const childEntries = useState("");
   const [hoursSinceLastMeal, setHoursSinceLastMeal] = useState(0);
   const [lastMeal, setLastMeal] = useState();
   const [petStatus, setPetStatus] = useState("ok");
+  const show = useState("none");
 
   useEffect(() => {
     axiosWithAuth()
@@ -19,22 +20,22 @@ const ChildCard = props => {
         `https://lambda-gigapet2.herokuapp.com/api/child/${props.child.child_id}/entries`
       )
       .then(res => {
-        setChildEntries(res.data);
+        childEntries[1](res.data);
       })
       .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
-    if (childEntries.length > 0) {
+    if (childEntries[0].length > 0) {
       const lastDate = new Date(
         Math.max.apply(
           Math,
-          childEntries.map(entry => new Date(entry.date_update).getTime())
+          childEntries[0].map(entry => new Date(entry.date_update).getTime())
         )
       );
       const currDate = new Date();
 
-      childEntries.map(entry => {
+      childEntries[0].map(entry => {
         if (new Date(entry.date_update).getTime() === lastDate.getTime())
           setLastMeal(entry);
       });
@@ -66,10 +67,10 @@ const ChildCard = props => {
             <Card.Meta>
               {props.child.pet_name}, XP: {props.child.pet_experience}
             </Card.Meta>{" "}
-            <Button>Add Meal +</Button>
+            <Button onClick={() => show[1]("flex")}>Add Meal +</Button>
           </Card.Content>
 
-          <FormikMealAdd childID={props.child.child_id} />
+          <FormikMealAdd childID={props.child.child_id} show={show} />
 
           <ChildStats
             lastMeal={lastMeal}
@@ -81,7 +82,6 @@ const ChildCard = props => {
             <MealEditor
               childname={props.child.child_name}
               childEntries={childEntries}
-              setChildEntries={setChildEntries}
             />
           )}
         </Card.Content>

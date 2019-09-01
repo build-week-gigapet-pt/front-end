@@ -358,6 +358,10 @@ table {
   text-align: center;
   font-weight: bold;
   background-color: #4c007e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .ui.container.childcard-container .ui.card.childcard .inner-content .pet-info .meta {
   color: #cceeff;
@@ -365,6 +369,7 @@ table {
 .ui.container.childcard-container .ui.card.childcard .inner-content .pet-info button {
   margin-top: 20px;
   background-color: #00aaff;
+  width: 135px;
 }
 .ui.container.childcard-container .ui.card.childcard .inner-content .pet-info button:hover {
   background-color: #cceeff;
@@ -378,7 +383,6 @@ table {
   position: absolute;
   left: 0;
   z-index: 1;
-  display: flex;
   flex-direction: column;
   padding: 25px;
   justify-content: center;
@@ -411,6 +415,15 @@ table {
   color: white;
   font-weight: bold;
   outline: none;
+}
+.ui.container.childcard-container .ui.card.childcard .inner-content .add-meal-container .close {
+  font-size: 1.3rem;
+  justify-self: flex-start !important;
+  align-self: flex-end;
+  cursor: pointer;
+}
+.ui.container.childcard-container .ui.card.childcard .inner-content .add-meal-container .close:hover {
+  color: white;
 }
 .ui.container.childcard-container .ui.card.childcard .inner-content .child-stats {
   color: #eed4ff;
