@@ -4,6 +4,7 @@
 
   .ui.card.childcard {
     width: 100%;
+    min-width: 933px;
     background-color: darken(@mediummauve, 5%);
     box-shadow: none;
 
@@ -23,10 +24,16 @@
 
       .pet-info {
         width: 20%;
+        height: 100%;
+        min-height: 411px;
         padding-bottom: 24px;
         text-align: center;
         font-weight: bold;
         background-color: @mediummauve;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         .meta {
           color: @periwinkle;
@@ -34,6 +41,7 @@
         button {
           margin-top: 20px;
           background-color: @darkperi;
+          width: 135px;
 
           &:hover {
             background-color: @periwinkle;
@@ -46,15 +54,14 @@
         height: calc(100% - 39px);
         text-align: center;
         font-weight: bold;
-        background-color: lighten(@mediummauve, 20%);
+        background-color: lighten(@mediummauve, 50%);
         position: absolute;
         left: 0;
         z-index: 1;
-        display: flex;
         flex-direction: column;
         padding: 25px;
-        justify-content: center;
         align-items: center;
+        color: @darkmauve;
 
         input {
           padding: 6px 12px;
@@ -70,21 +77,50 @@
           padding: 6px;
           border: none;
           border-radius: 4px;
-          background-color: lighten(orange, 10%);
+          background-color: rgb(255, 145, 0);
           font-size: 0.9em;
           text-transform: uppercase;
           font-weight: bold;
-          color: darken(orange, 40%);
+          color: darken(orange, 30%);
           outline: none;
+          cursor: pointer;
+
+          &:hover {
+            background-color: lighten(orange, 20%);
+            color: darken(orange, 40%);
+          }
         }
 
         select {
           height: 35px;
+          width: 150px;
           background-color: darken(@purple, 30%);
           border: none;
           color: white;
           font-weight: bold;
           outline: none;
+        }
+
+        .close {
+          font-size: 1.3rem;
+          justify-self: flex-start !important;
+          align-self: flex-end;
+          cursor: pointer;
+
+          &:hover {
+            color: white;
+          }
+        }
+
+        .errors {
+          width: 100%;
+          padding: 8px 15px;
+
+          background-color: rgb(206, 0, 0);
+          color: #ffb5b5;
+          font-weight: bold;
+          margin-top: 15px;
+          border-radius: 4px;
         }
       }
 
@@ -94,6 +130,8 @@
 
         h2 {
           color: @error-color;
+          font-size: 1.5rem;
+          font-weight: bold;
         }
 
         .description {

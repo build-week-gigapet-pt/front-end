@@ -135,15 +135,15 @@ const tabs = [
         <FormikLogForm props={props} />
       </Tab.Pane>
     )
-  },
-  {
-    menuItem: "Register",
-    render: props => (
-      <Tab.Pane>
-        <FormikRegForm props={props} />
-      </Tab.Pane>
-    )
   }
+  // {
+  //   menuItem: "Register",
+  //   render: props => (
+  //     <Tab.Pane>
+  //       <FormikRegForm props={props} />
+  //     </Tab.Pane>
+  //   )
+  // }
 ];
 
 const LoginRegForm = props => {

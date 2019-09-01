@@ -36,9 +36,7 @@ const DashBoard = props => {
                 e.stopPropagation();
                 active === "" ? setActive("menu-active") : setActive("");
               }}
-            >
-              <Icon name="ellipsis vertical"></Icon>
-            </div>
+            ></div>
           </Header>
           <Container className="parent-info">
             <p className="dashboard-title">
@@ -51,33 +49,28 @@ const DashBoard = props => {
                 ? ` active children.`
                 : ` active child.`}
             </p>
+            <ul>
+              {/* <li>
+                {" "}
+                <NavLink to="/profile">
+                  <Icon name="user" />
+                  &nbsp;Profile
+                </NavLink>
+              </li> */}
+              <li>
+                <NavLink to="/">
+                  <Icon name="sign-out" />
+                  &nbsp;Logout
+                </NavLink>
+              </li>
+            </ul>
           </Container>
           <Container className="childcard-container">
             {parent.childArray.map((child, i) => {
-              return <ChildCard key={i} child={child} />;
+              return (
+                <ChildCard key={i} child={child} history={props.history} />
+              );
             })}
-          </Container>
-          <Container className={`nav-menu ${active}`}>
-            <div className="close-container">
-              <Icon
-                className="close"
-                name="close"
-                onClick={() => {
-                  active === "" ? setActive("menu-active") : setActive("");
-                }}
-              ></Icon>
-            </div>
-            <ul>
-              <li>
-                {" "}
-                <NavLink to="/profile">
-                  Profile <Icon name="user" />
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/">Logout</NavLink>
-              </li>
-            </ul>
           </Container>
         </Container>
       </Container>
